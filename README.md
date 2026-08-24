@@ -8,7 +8,15 @@ SnowImpact analyzes proposed Snowflake changes before production and answers:
 
 It parses SQL, Terraform and dbt metadata, correlates changes with live Snowflake metadata, builds a dependency/access graph, runs deterministic security/governance/FinOps/performance rules, evaluates policy-as-code, calculates an explainable risk score, and returns `ALLOW`, `WARN`, `REQUIRE_APPROVAL`, `BLOCK`, or `UNKNOWN`.
 
+<p align="center">
+  <img src="media_resources/howitsworks.png" alt="How It Works" width="100%" />
+</p>
+
 ## Highlights
+
+<p align="center">
+  <img src="media_resources/features.png" alt="SnowImpact Features" width="100%" />
+</p>
 
 - Snowflake SQL change parsing with the Snowflake dialect
 - Downstream dependency and blast-radius analysis
@@ -28,6 +36,10 @@ It parses SQL, Terraform and dbt metadata, correlates changes with live Snowflak
 - Read-only Snowflake design. Proposed PR SQL is parsed, never executed
 
 ## Architecture
+
+<p align="center">
+  <img src="media_resources/architecture_diagram.png" alt="Architecture Diagram" width="100%" />
+</p>
 
 ```text
 SQL / dbt / Terraform / PR
