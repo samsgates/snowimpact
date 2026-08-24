@@ -1,0 +1,50 @@
+replicaCount: 2
+image:
+  repository: ghcr.io/snowimpact/snowimpact
+  tag: "1.0.0"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 8080
+
+ingress:
+  enabled: false
+  className: ""
+  host: snowimpact.example.com
+  tlsSecret: ""
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 384Mi
+  limits:
+    cpu: "1"
+    memory: 1Gi
+
+env:
+  SNOWIMPACT_ENV: production
+  SNOWIMPACT_DEMO_MODE: "false"
+  SNOWIMPACT_DATABASE_URL: ""
+  SNOWIMPACT_REDIS_URL: ""
+
+secretRef: snowimpact-secrets
+podSecurityContext:
+  runAsNonRoot: true
+  seccompProfile:
+    type: RuntimeDefault
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop: ["ALL"]
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 70
+
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 1

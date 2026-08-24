@@ -1,0 +1,2 @@
+SnowImpact installed.
+Create the Secret referenced by values.secretRef with SNOWIMPACT_API_KEY, database/Redis settings, and Snowflake authentication before production use.

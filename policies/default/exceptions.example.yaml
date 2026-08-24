@@ -1,0 +1,7 @@
+# Rename to exceptions.yaml and add a time-bound exception only when justified.
+exceptions:
+  - policy: approve-breaking-lineage
+    object: PROD.LEGACY.DEPRECATED_VIEW
+    reason: Approved legacy migration window
+    owner: data-platform@example.com
+    expires: 2026-12-31

@@ -1,0 +1,79 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "snowimpact"
+version = "1.0.0"
+description = "Snowflake change intelligence, blast-radius analysis, policy-as-code, security and FinOps"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {text = "Apache-2.0"}
+authors = [{name = "SnowImpact Contributors"}]
+dependencies = [
+  "fastapi==0.141.1",
+  "uvicorn[standard]>=0.35,<0.36",
+  "pydantic>=2.11,<3",
+  "pydantic-settings>=2.10,<3",
+  "sqlalchemy>=2.0.43,<3",
+  "alembic>=1.16,<2",
+  "psycopg[binary]>=3.2,<4",
+  "redis>=6.4,<7",
+  "sqlglot==30.17.0",
+  "snowflake-connector-python==4.7.2",
+  "networkx>=3.5,<4",
+  "PyYAML>=6.0.2,<7",
+  "typer>=0.16,<1",
+  "rich>=14,<15",
+  "httpx>=0.28,<1",
+  "PyJWT[crypto]>=2.10,<3",
+  "temporalio==1.31.0",
+  "cryptography>=45,<46",
+  "python-multipart>=0.0.20,<1",
+  "prometheus-client>=0.22,<1",
+]
+
+[project.optional-dependencies]
+otel = [
+  "opentelemetry-sdk==1.44.0",
+  "opentelemetry-instrumentation-fastapi==0.65b0",
+]
+dev = [
+  "pytest>=8.4,<9",
+  "pytest-cov>=6.2,<7",
+  "pytest-asyncio>=1.1,<2",
+  "ruff>=0.12,<1",
+  "mypy>=1.17,<2",
+]
+
+[project.scripts]
+snowimpact = "snowimpact.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["snowimpact"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --disable-warnings --maxfail=1"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+check_untyped_defs = true
+
+[tool.hatch.build]
+include = [
+  "snowimpact/**/*.py",
+  "snowimpact/**/*.yaml",
+  "README.md",
+  "LICENSE",
+]

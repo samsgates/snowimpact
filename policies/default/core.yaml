@@ -1,0 +1,48 @@
+policies:
+  - name: block-critical-security
+    category: security
+    severities: [critical]
+    min_risk_score: 80
+    action: block
+    description: Block critical Snowflake security regressions.
+
+  - name: approve-high-security
+    category: security
+    severities: [high]
+    min_risk_score: 65
+    action: require_approval
+
+  - name: block-critical-governance
+    category: governance
+    severities: [critical]
+    action: block
+
+  - name: approve-major-finops
+    category: finops
+    severities: [high, critical]
+    min_risk_score: 65
+    action: require_approval
+
+  - name: approve-breaking-lineage
+    category: dependencies
+    severities: [high, critical]
+    min_risk_score: 60
+    action: require_approval
+
+  - name: block-dangerous-ai-tools
+    category: ai
+    rules: [AGENT_WRITE_TOOL_EXPOSURE, MCP_DIRECT_SQL_EXPOSURE]
+    action: block
+
+  - name: block-unsupported-change
+    category: governance
+    rules: [UNSUPPORTED_CHANGE]
+    action: require_approval
+    description: Unsupported change shapes require explicit approval.
+
+  - name: approve-high-ai-risk
+    category: ai
+    severities: [high]
+    min_risk_score: 70
+    action: require_approval
+    description: High-risk agent/MCP changes require explicit approval.

@@ -1,0 +1,6 @@
+apiVersion: v2
+name: snowimpact
+description: Snowflake change intelligence and policy firewall
+version: 1.0.0
+appVersion: "1.0.0"
+type: application

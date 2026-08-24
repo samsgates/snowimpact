@@ -1,0 +1,15 @@
+.git
+.github
+.venv
+__pycache__
+*.pyc
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.env
+*.db
+*.sqlite
+web
+node_modules
+.next
+snowimpact-source.zip
